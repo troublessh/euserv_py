@@ -18,7 +18,7 @@ SERVICE_NAME="euserv-renew"
 COMPOSE_FILE="${INSTALL_DIR}/docker-compose.yml"
 COMMAND_LINK="/usr/local/bin/dj"
 MODE_FILE="${INSTALL_DIR}/.run_mode"
-GITHUB_REPO="https://raw.githubusercontent.com/dufei511/euserv_py/yuming"
+GITHUB_REPO="https://raw.githubusercontent.com/dufei511/euserv_py/dev"
 
 PYTHON_TARGET="3.12"
 PYTHON_BIN_NAME="python3.12"
@@ -759,12 +759,12 @@ update_script() {
         cp ${INSTALL_DIR}/euser_renew.py \
            ${INSTALL_DIR}/euser_renew.py.bak.$(date +%Y%m%d_%H%M%S)
 
-    if curl -fsSL https://raw.githubusercontent.com/dufei511/euserv_py/yuming/euser_renew.py \
+    if curl -fsSL https://raw.githubusercontent.com/dufei511/euserv_py/dev/euser_renew.py \
            -o ${INSTALL_DIR}/euser_renew.py.new; then
         mv ${INSTALL_DIR}/euser_renew.py.new ${INSTALL_DIR}/euser_renew.py
         chmod +x ${INSTALL_DIR}/euser_renew.py
         print_success "脚本更新成功"
-        curl -fsSL https://raw.githubusercontent.com/dufei511/euserv_py/yuming/requirements.txt \
+        curl -fsSL https://raw.githubusercontent.com/dufei511/euserv_py/dev/requirements.txt \
             -o ${INSTALL_DIR}/requirements.txt 2>/dev/null && print_success "requirements.txt 更新成功"
         local mode=$(get_run_mode)
         if [ "$mode" == "python" ]; then
